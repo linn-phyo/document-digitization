@@ -1,0 +1,243 @@
+[
+    {
+        "filename": "IMG_6361.jpeg",
+        "default_language": "jp",
+        "en": {
+            "type": "receipt",
+            "vendor": "Charcoal Grilled Chicken Wadachi",
+            "place": "Charcoal Grilled Chicken Wadachi",
+            "item": "Charcoal Grilled Chicken Wadachi",
+            "item_type": "meal",
+            "qty": 1,
+            "date": "13/12/2001 00:00:00",
+            "checkin_time": "13/12/2001 00:00:00",
+            "checkout_time": "13/12/2001 00:00:00",
+            "currency": "usd",
+            "amount": "$ 5,100"
+        },
+        "jp": {
+            "type": "receipt",
+            "vendor": "炭火焼鳥 わ だ ち",
+            "place": "炭火焼鳥 わ だ ち",
+            "item": "炭火焼鳥 わ だ ち",
+            "item_type": "meal",
+            "qty": 1,
+            "date": "13/12/2001 00:00:00",
+            "checkin_time": "13/12/2001 00:00:00",
+            "checkout_time": "13/12/2001 00:00:00",
+            "currency": "jpy",
+            "amount": "¥ 5,100"
+        }
+    },
+    {
+        "filename": "IMG_6363.jpeg",
+        "default_language": "jp",
+        "en": {
+            "type": "voucher",
+            "vendor": "IMS24 Co., Ltd.",
+            "place": "Ichimo Yokohama Minamisai Parking Lot",
+            "item": "Parking Ticket",
+            "item_type": "transportation",
+            "qty": 1,
+            "date": "21/12/2007 00:00:00",
+            "checkin_time": "21/12/2007 15:11:00",
+            "checkout_time": "21/12/2007 15:20:00",
+            "currency": "usd",
+            "amount": "$ 440"
+        },
+        "jp": {
+            "type": "voucher",
+            "vendor": "イムズ 24 株式会社",
+            "place": "一下横浜南幸駐車場",
+            "item": "駐車場代として",
+            "item_type": "transportation",
+            "qty": 1,
+            "date": "21/12/2007 00:00:00",
+            "checkin_time": "21/12/2007 15:11:00",
+            "checkout_time": "21/12/2007 15:20:00",
+            "currency": "jpy",
+            "amount": "¥ 440"
+        }
+    },
+    {
+        "filename": "IMG_6365.jpeg",
+        "default_language": "jp",
+        "en": {
+            "type": "receipt",
+            "vendor": "Shokai Co., Ltd.",
+            "place": "Dr. Drive Sunrich Koyasu Yokohama City Kanagawa Ward Koyasu Street",
+            "item": "Tires Replacement Charges",
+            "item_type": "expense",
+            "qty": 1,
+            "date": "25/12/2013 00:00:00",
+            "checkin_time": "25/12/2013 00:00:00",
+            "checkout_time": "25/12/2013 00:00:00",
+            "currency": "usd",
+            "amount": "$ 8,000"
+        },
+        "jp": {
+            "type": "receipt",
+            "vendor": "株式会社商会",
+            "place": "Dr.Drive サンリッチ子安 横浜市神奈川区子安通",
+            "item": "スタッドレス交換代として",
+            "item_type": "expense",
+            "qty": 1,
+            "date": "25/12/2013 00:00:00",
+            "checkin_time": "25/12/2013 00:00:00",
+            "checkout_time": "25/12/2013 00:00:00",
+            "currency": "jpy",
+            "amount": "¥ 8,000"
+        }
+    },
+    {
+        "filename": "IMG_6366.jpeg",
+        "default_language": "jp",
+        "en": {
+            "type": "receipt",
+            "vendor": "Yutaka Co., Ltd.",
+            "place": "Dr. Drive Sunrich Koyasu Yokohama City Kanagawa Ward Koyasu Street",
+            "item": "Oil and Parts Replacement Charges",
+            "item_type": "expense",
+            "qty": 1,
+            "date": "08/11/2013 00:00:00",
+            "checkin_time": "08/11/2013 00:00:00",
+            "checkout_time": "08/11/2013 00:00:00",
+            "currency": "usd",
+            "amount": "$ 6,000"
+        },
+        "jp": {
+            "type": "receipt",
+            "vendor": "株式会社豊",
+            "place": "Dr.Drive サンリッチ子安 横浜市神奈川区子安通",
+            "item": "オイルエレメント交換代として",
+            "item_type": "expense",
+            "qty": 1,
+            "date": "08/11/2013 00:00:00",
+            "checkin_time": "08/11/2013 00:00:00",
+            "checkout_time": "08/11/2013 00:00:00",
+            "currency": "jpy",
+            "amount": "¥ 6,000"
+        }
+    },
+    {
+        "filename": "IMG_6367.jpeg",
+        "default_language": "jp",
+        "en": {
+            "type": "voucher",
+            "vendor": "Hotel Daiei",
+            "place": "Ginza, Chuo Ward, Tokyo",
+            "item": "Parking Ticket",
+            "item_type": "transportation",
+            "qty": 1,
+            "date": "06/11/2021 00:00:00",
+            "checkin_time": "06/11/2021 00:00:00",
+            "checkout_time": "06/11/2021 00:00:00",
+            "currency": "usd",
+            "amount": "$ 1,500"
+        },
+        "jp": {
+            "type": "voucher",
+            "vendor": "ホテルダイエー",
+            "place": "東京都中央区銀座",
+            "item": "駐車場代として",
+            "item_type": "transportation",
+            "qty": 1,
+            "date": "06/11/2021 00:00:00",
+            "checkin_time": "06/11/2021 00:00:00",
+            "checkout_time": "06/11/2021 00:00:00",
+            "currency": "jpy",
+            "amount": "¥ 1,500"
+        }
+    },
+    {
+        "filename": "IMG_6368.jpeg",
+        "default_language": "jp",
+        "en": {
+            "type": "receipt",
+            "vendor": "Quality Store",
+            "place": "New Stage Yokohama Store",
+            "item": "Kirite",
+            "item_type": "expense",
+            "qty": 10,
+            "date": "01/11/2021 00:00:00",
+            "checkin_time": "01/11/2021 00:00:00",
+            "checkout_time": "01/11/2021 00:00:00",
+            "currency": "usd",
+            "amount": "$ 100"
+        },
+        "jp": {
+            "type": "receipt",
+            "vendor": "Quality Store",
+            "place": "ニューステージ横浜店",
+            "item": "キツテ",
+            "item_type": "expense",
+            "qty": 10,
+            "date": "01/11/2021 00:00:00",
+            "checkin_time": "01/11/2021 00:00:00",
+            "checkout_time": "01/11/2021 00:00:00",
+            "currency": "jpy",
+            "amount": "¥ 100"
+        }
+    },
+    {
+        "filename": "IMG_6369.jpeg",
+        "default_language": "jp",
+        "en": {
+            "type": "voucher",
+            "vendor": "Coin Park Co., Ltd.",
+            "place": "B - 979 Higashi-Kanagawa Station Building",
+            "item": "Parking Ticket",
+            "item_type": "transportation",
+            "qty": 1,
+            "date": "04/11/2021 00:00:00",
+            "checkin_time": "04/11/2021 12:16:00",
+            "checkout_time": "04/11/2021 12:57:00",
+            "currency": "usd",
+            "amount": "$ 300"
+        },
+        "jp": {
+            "type": "voucher",
+            "vendor": "株コインパーク",
+            "place": "B - 979 東神奈川駅ビル",
+            "item": "駐車場代として",
+            "item_type": "transportation",
+            "qty": 1,
+            "date": "04/11/2021 00:00:00",
+            "checkin_time": "04/11/2021 12:16:00",
+            "checkout_time": "04/11/2021 12:57:00",
+            "currency": "jpy",
+            "amount": "¥ 300"
+        }
+    }
+    ,
+    {
+        "filename": "IMG_6370.jpeg",
+        "default_language": "jp",
+        "en": {
+            "type": "voucher",
+            "vendor": "Nihon Kotsu Group",
+            "place": "Keihin Hire Co., Ltd. Hodogaya Office",
+            "item": "Parking Ticket",
+            "item_type": "transportation",
+            "qty": 1,
+            "date": "06/11/2021 00:00:00",
+            "checkin_time": "06/11/2021 00:00:00",
+            "checkout_time": "06/11/2021 00:00:00",
+            "currency": "usd",
+            "amount": "$ 1,700"
+        },
+        "jp": {
+            "type": "voucher",
+            "vendor": "日本交通グループ",
+            "place": "京浜ハイヤー ( 株 ) 保土ヶ谷営業所",
+            "item": "駐車場代として",
+            "item_type": "transportation",
+            "qty": 1,
+            "date": "06/11/2021 00:00:00",
+            "checkin_time": "06/11/2021 00:00:00",
+            "checkout_time": "06/11/2021 00:00:00",
+            "currency": "jpy",
+            "amount": "¥ 1,700"
+        }
+    }
+]

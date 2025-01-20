@@ -1,0 +1,1 @@
+export const JPY_to_USD = 0.0064;
