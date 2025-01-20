@@ -1,8 +1,6 @@
 'use client';
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import {
   Card,
@@ -28,12 +26,20 @@ import {
 
 import { useAppDispatch, useAppSelector } from "@/lib/hooks/hooks";
 
+import { useIndexedDB } from "@/lib/utils/indexeddb-helper";
+import { DBConfig } from "@/lib/data/dbconfig";
+
+const {
+    initDB,
+    isDBConnecting,
+} = useIndexedDB(DBConfig.name, [DBConfig.invoiceTable]);
+
 export default function DocumentPage() { 
 
   const dispatch = useAppDispatch();
 
-    const status = useAppSelector(selectStatus);
-    const data = useAppSelector(selectData);
+  const status = useAppSelector(selectStatus);
+  const data = useAppSelector(selectData);
 
   const optionsCurrency = [
     { value: 'jpy', label: '¥ JPY' },
@@ -42,6 +48,19 @@ export default function DocumentPage() {
   ]
 
   const [currency, setCurrency] = useState(optionsCurrency[0]);
+
+  const initialized = useRef(false)
+
+    useEffect(() => {
+
+    if (!initialized.current) {
+        console.log("EFFECT ITEM TYPE STATUS >>> ", status);
+        
+        dispatch(getDashboardData({currency: "jpy"}));
+        initialized.current = true;
+    }
+
+    }, [data]);
 
   const setNewCurrency = (data: any) => {
     console.log("SELECT Currency >> ", data.label.split(' ')[0]);

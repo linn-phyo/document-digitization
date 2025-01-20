@@ -43,23 +43,26 @@ const {
 } = useIndexedDB(DBConfig.name, [DBConfig.invoiceTable]);
 
 export const saveData = createAsyncThunk('saveData', async ( formData: any ) => {
+  await initDB();
   const response = await putValue(DBConfig.invoiceTable, formData.data);
   return response;
 });
 
 export const updateData = createAsyncThunk('updateData', async ( formData: any ) => {
+  await initDB();
   const response = await updateValue(DBConfig.invoiceTable, Number(formData.id), formData.data);
   return response;
 });
 
 export const getAllInvoices = createAsyncThunk('getAllInvoices', async ( filterDate: any ) => {
-  const response = await getValueByFilter(DBConfig.invoiceTable, filterDate.fromDate, filterDate.toDate, filterDate.type, filterDate.itemType);
-  // const response = await getAllValue(DBConfig.invoiceTable);
-  return response;
+    await initDB();
+    const response = await getValueByFilter(DBConfig.invoiceTable, filterDate.fromDate, filterDate.toDate, filterDate.type, filterDate.itemType);
+    // const response = await getAllValue(DBConfig.invoiceTable);
+    return response;
 });
 
 export const getInvoice = createAsyncThunk('getInvoice', async (id: number) => {
-  console.log("SELECTED EDIT ITEM in SLICE >>> ", id);
+  await initDB();
   const response = await getValue(DBConfig.invoiceTable, Number(id));
   return response;
 });
@@ -115,9 +118,6 @@ export const documentSlice = createAppSlice({
         state.data = [];
         state.status = "failed";
       }
-
-      
-      
     },
 
     deleteByID: (state, action: PayloadAction< { id: number; } >) => {

@@ -1,7 +1,7 @@
 'use client';
 
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import {
   TableHead,
@@ -43,6 +43,20 @@ import {
 } from '@/lib/features/document_ocr/document.slice'
 
 import { useAppDispatch, useAppSelector } from "@/lib/hooks/hooks";
+
+import { useIndexedDB } from "@/lib/utils/indexeddb-helper";
+import { DBConfig } from "@/lib/data/dbconfig";
+
+const {
+  initDB,
+  putValue,
+  getValue,
+  getValueByFilter,
+  getAllValue,
+  updateValue,
+  deleteValue,
+  isDBConnecting,
+} = useIndexedDB(DBConfig.name, [DBConfig.invoiceTable]);
 
 export function InvoicesTable({
   currentPageNo,
@@ -97,6 +111,8 @@ export function InvoicesTable({
         showToast("success", "Data has been saved!");
         dispatch(resetStatus());
       }
+
+      // if(!isDBConnecting) initDB();
 
       dispatch(getAllInvoices(formData));
     }

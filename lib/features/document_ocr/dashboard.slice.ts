@@ -46,7 +46,7 @@ const {
 let selectedCurrency = "jpy";
 
 export const getDashboardData = createAsyncThunk('getDashboardData', async ( filterData: any ) => {
-  console.log("Dashboard Slice");
+  await initDB();
   selectedCurrency = filterData.currency;
   const response = await getAllValue(DBConfig.invoiceTable);
   return response;
@@ -59,6 +59,11 @@ export const dashboardSlice = createAppSlice({
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: (create) => ({
+
+    initIndexedDB: (state) => {
+      
+      if(!isDBConnecting) initDB();
+    },
 
     resetStatus: (state) => {
       
@@ -162,7 +167,7 @@ export const dashboardSlice = createAppSlice({
   },
 });
 
-export const { resetStatus } = dashboardSlice.actions;
+export const { initIndexedDB, resetStatus } = dashboardSlice.actions;
 
 // Selectors returned by `slice.selectors` take the root state as their first argument.
 export const { selectData, selectStatus } = dashboardSlice.selectors;

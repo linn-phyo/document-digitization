@@ -1,6 +1,12 @@
 'use client';
 
-import ReactApexChart from "react-apexcharts";
+
+import dynamic from 'next/dynamic'
+
+const ReactApexChart = dynamic(
+  () => import('react-apexcharts'),
+  { ssr: false }
+)
 import { ApexOptions } from "apexcharts";
 
 import { useState, useRef, useEffect } from "react";
@@ -102,8 +108,8 @@ export function ColumnsChart(props: any) {
         if (!initialized.current) {
             initialized.current = true;
         }
+        
         console.log("Chart Values >> ", series[0].data);
-
         setChartOption(options);
         setChartSeries(series);
 

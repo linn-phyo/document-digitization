@@ -5,7 +5,7 @@ import moment from 'moment';
 
 // Interface defining the return type for useIndexedDB hook
 interface UseIndexedDBResult {
-  initDB: any;
+  initDB: () => Promise<any>;
   getValue: (tableName: string, id: number) => Promise<any>;
   getValueByFilter: (tableName: string, formData: Date, toDate: Date, type: string, itemType: string) => Promise<any>;
   getAllValue: (tableName: string) => Promise<any[]>;
@@ -27,52 +27,64 @@ export const useIndexedDB = (
   tableNames: string[]
 ): UseIndexedDBResult => {
     let db: IDBDatabase | null = null;
-    let isDBConnecting: boolean = true;
+    let isDBConnecting: boolean = false;
 
-    const initDB = () => {
-        const request = indexedDB.open(databaseName, DBConfig.version);
-  
-        // Handle database upgrade
-        request.onupgradeneeded = () => {
-          const database = request.result;
-          tableNames.forEach((tableName) => {
-            if (!database.objectStoreNames.contains(tableName)) {
-              let objectStore = database.createObjectStore(tableName, {
-                autoIncrement: true,
-                keyPath: "id",
-              });
+    const initDB = (): Promise<any> => {
+      return new Promise((resolve, reject) => {
+        try {
+          console.info("Try to Connect DB");
+          const request = indexedDB.open(databaseName, DBConfig.version);
+    
+          // Handle database upgrade
+          request.onupgradeneeded = () => {
+            const database = request.result;
+            tableNames.forEach((tableName) => {
+              if (!database.objectStoreNames.contains(tableName)) {
+                let objectStore = database.createObjectStore(tableName, {
+                  autoIncrement: true,
+                  keyPath: "id",
+                });
 
-              objectStore.createIndex("imageIndex", "filename", { unique: false });
-              objectStore.createIndex("currencyIndex", "currency", { unique: false });
-              // objectStore.createIndex("dateIndex", "date", { unique: false });
-              // objectStore.createIndex("typeIndex", "type", { unique: false });
-              // objectStore.createIndex("itemTypeIndex", "item_type", { unique: false });
+                objectStore.createIndex("imageIndex", "filename", { unique: false });
+                objectStore.createIndex("currencyIndex", "currency", { unique: false });
+                // objectStore.createIndex("dateIndex", "date", { unique: false });
+                // objectStore.createIndex("typeIndex", "type", { unique: false });
+                // objectStore.createIndcex("itemTypeIndex", "item_type", { unique: false });
 
-            }
-          });
-        };
-  
-        // Handle successful database connection
-        request.onsuccess = () => {
-          console.info("Success initializing IndexedDB >> helper");
-          db = request.result
-          isDBConnecting = false;
-        };
-  
-        // Handle errors in database connection
-        request.onerror = () => {
-          console.error("Error initializing IndexedDB:", request.error);
-          isDBConnecting = false;
-        };
-  };
+              }
+            });
+          };
+    
+          // Handle successful database connection
+          request.onsuccess = () => {
+            console.info("Success initializing IndexedDB >> helper");
+            db = request.result
+            isDBConnecting = true;
+            resolve(db);
+          };
+    
+          // Handle errors in database connection
+          request.onerror = () => {
+            console.error("Error initializing IndexedDB:", request.error);
+            isDBConnecting = false;
+            reject(request.error);
+          };
+        } catch (error) {
+          reject(error);
+        }
+      });
+    };
 
-  if (!db) {
-    initDB();
-  }
+  // if (!db) {
+  //   initDB();
+  // }
 
   // Helper function to get a transaction for a specific table
   const getTransaction = (tableName: string, mode: IDBTransactionMode) => {
-    if (!db) throw new Error("Database is not initialized");
+    if (!db) {
+      console.log("DB ERROR >> ", "Database is not initialized");
+      throw new Error("Database is not initialized");
+    }
     return db.transaction(tableName, mode).objectStore(tableName);
   };
 

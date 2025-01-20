@@ -26,7 +26,6 @@ import {
 
 import Image from 'next/image';
 
-import { Logo } from '@/components/icons';
 import TreeFreeLogo from '../public/treefreelogo-only.png';
 import { NavItem } from './nav-item';
 import Providers from '@/lib/provider/providers';

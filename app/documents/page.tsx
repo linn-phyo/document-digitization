@@ -1,6 +1,6 @@
+'use client';
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { File, PlusCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -12,14 +12,6 @@ import {
   CardHeaderSubTitle,
   CardHeaderDescription
 } from '@/components/ui/card';
-import {
-  TableHead,
-  TableRow,
-  TableHeader,
-  TableBody,
-  Table
-} from '@/components/ui/table';
-import { ChevronLeft, ChevronRight } from 'lucide-react'; 
 import { FileUpload } from './fileupload';
 
 export default function DocumentPage() { 
@@ -82,7 +74,6 @@ export default function DocumentPage() {
         </Tabs>
       </main>
     </div>
-    
-  );
+    );
 }
 

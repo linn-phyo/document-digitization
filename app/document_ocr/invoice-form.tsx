@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {ChangeEvent, useEffect, useState, useRef} from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 import { Upload, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -26,12 +26,9 @@ import {
 
 import { useAppDispatch, useAppSelector } from "@/lib/hooks/hooks";
 
-import { JPY_to_USD } from '@/lib/utils/constants';
-
 export function InvoiceLayout() {
 
     let router = useRouter();
-    const searchParams = useSearchParams();
 
     const dispatch = useAppDispatch();
 

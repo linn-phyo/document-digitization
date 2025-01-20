@@ -30,19 +30,6 @@ export function ItemType() {
     const status = useAppSelector(selectStatus);
     const data = useAppSelector(selectData);
 
-    const initialized = useRef(false)
-
-    useEffect(() => {
-    
-        if (!initialized.current) {
-          initialized.current = true;
-          console.log("EFFECT ITEM TYPE STATUS >>> ", status);
-          dispatch(getDashboardData({currency: "jpy"}));
-        }
-        // console.log("Number of Transportation >> ", data.countTransportation);
-        // console.log("Column Chart Labels >> ", data.labels);
-      });
-
     return(
         <div className="grid grid-cols-4 gap-4 mt-4 mb-3">
             <div className="mt-2">

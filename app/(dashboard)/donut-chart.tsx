@@ -1,6 +1,11 @@
 'use client';
 
-import ReactApexChart from "react-apexcharts";
+import dynamic from 'next/dynamic'
+
+const ReactApexChart = dynamic(
+  () => import('react-apexcharts'),
+  { ssr: false }
+)
 import { ApexOptions } from "apexcharts";
 
 import { useState, useRef, useEffect } from "react";
@@ -13,6 +18,7 @@ import {
   } from '@/lib/features/document_ocr/dashboard.slice'
   
 import { useAppDispatch, useAppSelector } from "@/lib/hooks/hooks";
+
 
 export function DonutChart() {
 
