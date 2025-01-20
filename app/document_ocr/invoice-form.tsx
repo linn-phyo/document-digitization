@@ -84,7 +84,7 @@ export function InvoiceLayout() {
             if(data) {
                 setInvoiceId(data.id);
             } else {
-                router.push(`${process.env.NEXT_PUBLIC_APP_URL}/documents`);
+                router.push(`/documents`);
             }
             initialized.current = true;
         }
@@ -92,7 +92,7 @@ export function InvoiceLayout() {
         if(status === "uploaded" || status === 'edit') dispatch(resetStatus());
 
         if(status === "success") {
-            router.push(`${process.env.NEXT_PUBLIC_APP_URL}/invoice_listing`);
+            router.push(`/invoice_listing`);
         } else if(status === "edit") {
             console.log("EDIT ID >> ", data.id);
         } else if(status === "failed" && errorMessage != "") {
@@ -126,7 +126,7 @@ export function InvoiceLayout() {
 
             console.log("FORM DATA >> ", data.vendor);
         } else {
-            router.push(`${process.env.NEXT_PUBLIC_APP_URL}/documents`);
+            router.push(`/documents`);
         }
 
       }, [data]);
@@ -150,7 +150,7 @@ export function InvoiceLayout() {
       };
 
       const handleCancel = () => {
-        router.push(`${process.env.NEXT_PUBLIC_APP_URL}/documents`);
+        router.push(`/documents`);
       };
 
     return(

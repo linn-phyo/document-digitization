@@ -118,7 +118,7 @@ export function InvoicesTable({
     }
     
     if(status === "edit") {
-      router.push(`${process.env.NEXT_PUBLIC_APP_URL}/document_ocr`);
+      router.push(`/document_ocr`);
     }
 
     if(status === "deleted") {
@@ -145,7 +145,7 @@ export function InvoicesTable({
   };
 
   const handleOnClickAdd = (e: any) => {
-    router.push(`${process.env.NEXT_PUBLIC_APP_URL}/documents`);
+    router.push(`/documents`);
   };
 
   const handleClose = () => setModal(false);
