@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 
 interface Props {
     size: number,
-    value: Date,
+    value: any,
     timeDisplay: boolean;
     onChange: any;
 }

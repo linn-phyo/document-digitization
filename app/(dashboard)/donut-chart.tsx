@@ -1,8 +1,7 @@
 'use client';
 
 import ReactApexChart from "react-apexcharts";
-
-import  Select  from 'react-select';
+import { ApexOptions } from "apexcharts";
 
 import { useState, useRef, useEffect } from "react";
 
@@ -24,36 +23,32 @@ export function DonutChart() {
 
     const initialized = useRef(false);
 
-    const donutChartConfig = {
-          
-      series: data.donutValues,
-      options: {
-        chart: {
-          type: 'donut',
-        },
-        labels: data.donutLabels,
-        responsive: [{
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: 'bottom'
-            }
-          }
-        }],
-        title: {
-          text: 'Total Amount by Currency',
-          align: 'center',
-          style: {
-            color: '#444'
+    const series = data.donutValues;
+
+    const options: ApexOptions = {
+      labels: data.donutLabels,
+      responsive: [{
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200
+          },
+          legend: {
+            position: 'bottom'
           }
         }
-      },
+      }],
+      title: {
+        text: 'Total Amount by Currency',
+        align: 'center',
+        style: {
+          color: '#444'
+        }
+      }
     };
 
-    const [donutChart, setDonutChart] = useState(donutChartConfig);
+    const [donutChartOption, setDonutChartOption] = useState(options);
+    const [donutChartSeries, setDonutChartSeries] = useState(series);
 
     useEffect(() => {
     
@@ -62,14 +57,15 @@ export function DonutChart() {
         }
 
         console.log("Donut Chart Values >> ", data.donutLabels);
-        setDonutChart(donutChartConfig);
+        setDonutChartOption(options);
+        setDonutChartSeries(series);
 
       }, [data]);
 
     return(
         <div>
             <div>
-                <ReactApexChart options={donutChart.options} series={donutChart.series} type="donut" height={370} />
+                <ReactApexChart options={donutChartOption} series={donutChartSeries} type="donut" height={370} />
             </div>
         </div>
     );

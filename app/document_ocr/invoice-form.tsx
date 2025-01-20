@@ -41,10 +41,10 @@ export function InvoiceLayout() {
 
     const initialized = useRef(false);
 
-    const [invoiceId, setInvoiceId] = useState("");
+    const [invoiceId, setInvoiceId] = useState(0);
     const [formData, setFormData] = useState({
         filename: "",
-        file: null,
+        file: "",
         type: "",
         default_language: "",
         vendor: "",
@@ -87,7 +87,7 @@ export function InvoiceLayout() {
             if(data) {
                 setInvoiceId(data.id);
             } else {
-                router.push("/documents");
+                router.push(`${process.env.NEXT_PUBLIC_APP_URL}/documents`);
             }
             initialized.current = true;
         }
@@ -95,7 +95,7 @@ export function InvoiceLayout() {
         if(status === "uploaded" || status === 'edit') dispatch(resetStatus());
 
         if(status === "success") {
-            router.push("/invoice_listing");
+            router.push(`${process.env.NEXT_PUBLIC_APP_URL}/invoice_listing`);
         } else if(status === "edit") {
             console.log("EDIT ID >> ", data.id);
         } else if(status === "failed" && errorMessage != "") {
@@ -126,8 +126,10 @@ export function InvoiceLayout() {
                 currency: data.currency,
                 amount: data.amount
             });
+
+            console.log("FORM DATA >> ", data.vendor);
         } else {
-            router.push("/documents");
+            router.push(`${process.env.NEXT_PUBLIC_APP_URL}/documents`);
         }
 
       }, [data]);
@@ -151,7 +153,7 @@ export function InvoiceLayout() {
       };
 
       const handleCancel = () => {
-        router.push("/documents");
+        router.push(`${process.env.NEXT_PUBLIC_APP_URL}/documents`);
       };
 
     return(

@@ -78,7 +78,7 @@ export const documentSlice = createAppSlice({
       console.log("RESET STATUS >> ", state.status);
     },
 
-    upload: (state, action: PayloadAction< { file: any; filename: ""; language: string } >) => {
+    upload: (state, action: PayloadAction< { file: any; filename: string; language: string } >) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
@@ -88,28 +88,35 @@ export const documentSlice = createAppSlice({
       // state.file = file;
       // state.filename = filename;
 
-      let invoiceData = dataInvoice.find(item => {
+      let resultData: any = dataInvoice.find(item => {
         return item.filename == filename
-       });
+       }) ?? <Invoice>{ };
 
-      const defaultLanguage = invoiceData.default_language;
-      invoiceData = invoiceData[language == "" ? invoiceData.default_language : language];
-      invoiceData.id = 0;
-      invoiceData.file = file;
-      invoiceData.filename = filename;
-      invoiceData.default_language = language == "" ? defaultLanguage : language;
+      if(resultData) {
+        const defaultLanguage = resultData.default_language;
+        const languageID = (language == "" ? resultData.default_language : language) as keyof typeof resultData;
+        let invoiceData: any = resultData[languageID];
+        invoiceData.id = 0;
+        invoiceData.file = file;
+        invoiceData.filename = filename;
+        invoiceData.default_language = language == "" ? defaultLanguage : language;
+      
+        invoiceData.date = moment(invoiceData.date, "DD/MM/YYYY hh:mm:ss").toDate();
+        invoiceData.checkin_time = moment(invoiceData.checkin_time, "DD/MM/YYYY hh:mm:ss").toDate();
+        invoiceData.checkout_time = moment(invoiceData.checkout_time, "DD/MM/YYYY hh:mm:ss").toDate();
 
-      if(invoiceData != null) {
-        invoiceData.date = moment(invoiceData.date, "DD/MM/YYYY hh:mm:ss");
-        invoiceData.checkin_time = moment(invoiceData.checkin_time, "DD/MM/YYYY hh:mm:ss");
-        invoiceData.checkout_time = moment(invoiceData.checkout_time, "DD/MM/YYYY hh:mm:ss");
+        console.log("UPLOAD >>", invoiceData);
+
+        state.data = ParseAllObjects<Invoice>(invoiceData);
+        state.data.amount = state.data.amount = (state.data.default_language == "en") ? (state.data.amount.slice(0, 1) + ' ' + (Number(state.data.amount.slice(2, state.data.amount.length).replace(/[\s,]/g, '')) * JPY_to_USD).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) : state.data.amount;
+        state.status = "uploaded";
+      } else {
+
+        state.data = [];
+        state.status = "failed";
       }
 
-      console.log("UPLOAD >>", invoiceData);
-
-      state.data = ParseAllObjects<Invoice>(invoiceData);
-      state.data.amount = state.data.amount = (state.data.default_language == "en") ? (state.data.amount.slice(0, 1) + ' ' + (Number(state.data.amount.slice(2, state.data.amount.length).replace(/[\s,]/g, '')) * JPY_to_USD).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) : state.data.amount;
-      state.status = "uploaded";
+      
       
     },
 

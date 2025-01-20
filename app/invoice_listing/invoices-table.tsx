@@ -102,7 +102,7 @@ export function InvoicesTable({
     }
     
     if(status === "edit") {
-      router.push(`/document_ocr`);
+      router.push(`${process.env.NEXT_PUBLIC_APP_URL}/document_ocr`);
     }
 
     if(status === "deleted") {
@@ -129,7 +129,7 @@ export function InvoicesTable({
   };
 
   const handleOnClickAdd = (e: any) => {
-    router.push(`/documents`);
+    router.push(`${process.env.NEXT_PUBLIC_APP_URL}/documents`);
   };
 
   const handleClose = () => setModal(false);
@@ -188,13 +188,13 @@ export function InvoicesTable({
           <div className="mt-2">
               <div className="flex flex-row items-center">
                   <label className="basis-1/4">From Date :</label>
-                  <DateTimePicker size={30} value={formData.fromdate} onChange={setNewFromDate} timeDisplay={false}/>
+                  <DateTimePicker size={30} value={formData.fromDate} onChange={setNewFromDate} timeDisplay={false}/>
               </div>
           </div>
           <div className="mt-2">
               <div className="flex flex-row items-center">
                   <label className="basis-1/4">To Date :</label>
-                  <DateTimePicker size={30} value={formData.todate} onChange={setNewToDate} timeDisplay={false}/>
+                  <DateTimePicker size={30} value={formData.fromDate} onChange={setNewToDate} timeDisplay={false}/>
               </div>
           </div>
         </div>

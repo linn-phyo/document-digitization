@@ -27,7 +27,7 @@ export function FileUpload() {
         console.log("EFFECT STATUS >>> ", status);
         if(status === "uploaded") {
             dispatch(resetStatus());
-            router.push(`\document_ocr`, { scroll: false });
+            router.push(`${process.env.NEXT_PUBLIC_APP_URL}/document_ocr`, { scroll: false });
         }
     },[status]);
 

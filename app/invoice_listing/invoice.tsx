@@ -41,7 +41,7 @@ export function InvoiceRow({ invoice, handleShowModalDialog }: { invoice: Invoic
     const id = (formData.get('id')? formData.get('id') : -1) as number;
     dispatch(getInvoice(id as number));
     // startTransition(() => {
-    //   router.replace(`/document_ocr?${createQueryString("id", value)}`);
+    //   router.replace(`\document_ocr?${createQueryString("id", value)}`);
     // });
   }
 
@@ -50,7 +50,7 @@ export function InvoiceRow({ invoice, handleShowModalDialog }: { invoice: Invoic
     const id = (formData.get('id')? formData.get('id') : -1) as number;
     dispatch(getInvoice(id as number));
     // startTransition(() => {
-    //   router.replace(`/document_ocr?${createQueryString("id", value)}`);
+    //   router.replace(`\document_ocr?${createQueryString("id", value)}`);
     // });
   }
 
@@ -88,7 +88,7 @@ export function InvoiceRow({ invoice, handleShowModalDialog }: { invoice: Invoic
                 <button type="submit">Edit</button>
               </form>
             </DropdownMenuItem>
-            <DropdownMenuItem><button type="button" value={invoice.id} onClick={(e) => handleShowModalDialog(e.target.value)}>Delete</button></DropdownMenuItem>
+            <DropdownMenuItem><button type="button" value={invoice.id} onClick={(e) => handleShowModalDialog((e.target as HTMLInputElement).value)}>Delete</button></DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </TableCell>

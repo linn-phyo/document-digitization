@@ -1,7 +1,0 @@
-{
-  "/documents/page": "app/documents/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/invoice_listing/page": "app/invoice_listing/page.js",
-  "/(dashboard)/page": "app/(dashboard)/page.js",
-  "/document_ocr/page": "app/document_ocr/page.js"
-}

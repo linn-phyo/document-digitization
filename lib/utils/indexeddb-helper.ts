@@ -139,7 +139,7 @@ export const useIndexedDB = (
   // Function to insert or update a single value in a specific table
   const putValue = (
     tableName: string,
-    value: object
+    value: any
   ): Promise<IDBValidKey | null> => {
     return new Promise((resolve, reject) => {
       try {
@@ -147,7 +147,7 @@ export const useIndexedDB = (
         const imageIndex = store.index("imageIndex",);
 
         console.log("Find IMG NAME >> ", value.filename);
-        const request = imageIndex.get(value.filename);
+        const request = imageIndex.get(value?.filename);
         request.onsuccess = () => {
           const data = request.result;
           console.log("FOUND >> ", request);
