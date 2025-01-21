@@ -127,7 +127,7 @@ export function InvoicesTable({
     }
     
     if(status === "edit") {
-      router.push(`/document_ocr`);
+      router.replace(`/document_ocr`);
     }
 
     if(status === "deleted") {
@@ -206,7 +206,7 @@ export function InvoicesTable({
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-4 gap-4 mt-4 mb-12">
+        <div className="grid grid-cols-4 gap-4 mb-8">
           <div className="mt-2">
               <div className="flex flex-row items-center">
                   <label className="basis-1/4">From Date :</label>
@@ -220,7 +220,7 @@ export function InvoicesTable({
               </div>
           </div>
         </div>
-        <div className="grid grid-cols-4 gap-4 mt-4 mb-12">
+        <div className="grid grid-cols-4 gap-4 mb-8">
           <div className="mt-2">
               <div className="flex flex-row items-center">
                   <label className="basis-1/4">Item :</label>
@@ -257,6 +257,7 @@ export function InvoicesTable({
         </div>
 
         <hr/>
+
         <Table>
           <TableHeader>
             <TableRow>

@@ -42,7 +42,7 @@ export function ItemType() {
       };
 
     return(
-        <div className="grid grid-cols-4 gap-4 mt-4 mb-3">
+        <div className="grid grid-cols-4 gap-4 mb-3">
             <div className="mt-2">
               <div className="flex flex-row items-center">
                 <Card className='min-w-full cursor-pointer' data-id="transportation" onClick={OnClickCard}>
