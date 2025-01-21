@@ -1,6 +1,5 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
 import {
     Card,
     CardContent,
@@ -12,11 +11,9 @@ import {
 
 import { ArrowRight, HandCoins, Utensils, Car } from 'lucide-react';
 
-import { useState, useEffect, useRef } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { 
-    resetStatus,
-    getDashboardData,
     selectStatus,
     selectData,
   } from '@/lib/features/document_ocr/dashboard.slice'
@@ -25,16 +22,30 @@ import { useAppDispatch, useAppSelector } from "@/lib/hooks/hooks";
 
 export function ItemType() {
 
-    const dispatch = useAppDispatch();
+    
+    const router = useRouter();
+    const searchParams = useSearchParams();
 
     const status = useAppSelector(selectStatus);
     const data = useAppSelector(selectData);
+
+    const OnClickCard = (e: any) => {
+        const cardID = e.currentTarget.dataset.id;
+        if(cardID == "upload") {
+            router.replace(`/documents`)
+        } else {
+            const params = new URLSearchParams(searchParams);
+            params.set("itemtype",cardID );
+            router.replace(`/invoice_listing?${params.toString()}`);
+        }
+        
+      };
 
     return(
         <div className="grid grid-cols-4 gap-4 mt-4 mb-3">
             <div className="mt-2">
               <div className="flex flex-row items-center">
-                <Card className='min-w-full cursor-pointer'>
+                <Card className='min-w-full cursor-pointer' data-id="transportation" onClick={OnClickCard}>
                     <CardHeader>
                         <CardTitle>
                             <div className='flex flex-row'><Car /> <span className='pl-4'>Transportation Bills</span></div>
@@ -57,7 +68,7 @@ export function ItemType() {
           </div>
           <div className="mt-2">
               <div className="flex flex-row items-center">
-                <Card className='min-w-full cursor-pointer'>
+                <Card className='min-w-full cursor-pointer' data-id="meal" onClick={OnClickCard}>
                     <CardHeader>
                         <CardTitle>
                             <div className='flex flex-row'><Utensils /> <span className='pl-4'>Meal Bills</span></div>
@@ -80,7 +91,7 @@ export function ItemType() {
           </div>
           <div className="mt-2">
               <div className="flex flex-row items-center">
-                <Card className='min-w-full cursor-pointer'>
+                <Card className='min-w-full cursor-pointer' data-id="expense" onClick={OnClickCard}>
                     <CardHeader>
                         <CardTitle>
                             <div className='flex flex-row'><HandCoins /> <span className='pl-4'>General Bills</span></div>
@@ -103,7 +114,7 @@ export function ItemType() {
           </div>
           <div className="mt-2">
               <div className="flex flex-row items-center">
-                <Card className='min-w-full  cursor-pointer'>
+                <Card className='min-w-full  cursor-pointer' data-id="upload" onClick={OnClickCard}>
                     <CardHeader>
                         <CardTitle>Document Information Extraction</CardTitle>
                         <CardDescription>

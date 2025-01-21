@@ -1,12 +1,17 @@
 'use client';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { File, PlusCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight } from 'lucide-react'; 
 import { InvoicesTable } from './invoices-table';
+
+export type SearchParams = {
+  itemtype: string;
+};
+
+export type PageProps = {
+  searchParams: SearchParams;
+};
  
-export default function DocumentListingPage() { 
+export default function DocumentListingPage({ searchParams }: PageProps) { 
 
   let pageNo = 1;
   let newOffset = 0;
@@ -25,6 +30,7 @@ export default function DocumentListingPage() {
             currentPageNo={pageNo}
             offset={newOffset*pageNo}
             totalItems={totalItems}
+            searchParams={searchParams}
             />
           </TabsContent>
         </Tabs>

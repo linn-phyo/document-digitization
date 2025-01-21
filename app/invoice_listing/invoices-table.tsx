@@ -1,6 +1,6 @@
 'use client';
 
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import {
@@ -24,7 +24,6 @@ import { RefreshCcw, PlusCircle } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import  Select  from 'react-select';
-import { Input } from '@/components/ui/input';
 import { DateTimePicker } from '@/components/ui/datetimepicker';
 
 import ModalDialog from '@/components/ui/modal-dialog';
@@ -61,11 +60,13 @@ const {
 export function InvoicesTable({
   currentPageNo,
   offset,
-  totalItems
+  totalItems,
+  searchParams,
 }: {
   currentPageNo: number,
   offset: number;
   totalItems: number;
+  searchParams: any;
 }) {
 
   const router = useRouter();
@@ -82,7 +83,7 @@ export function InvoicesTable({
 
   const [formData, setFormData] = useState({
     type: '',
-    itemType: '',
+    itemType: (searchParams.itemtype) ? searchParams.itemtype : "",
     fromDate: null,
     toDate: null,
   });
@@ -100,6 +101,11 @@ export function InvoicesTable({
     { value: 'expense', label: 'Expense' },
   ]
 
+  let defaultItemType = null;
+  if(searchParams.itemtype) {
+    defaultItemType = optionsItemType.filter(data => (data.value == searchParams.itemtype));
+  }
+
   useEffect(() => {
     
     if (!initialized.current) {
@@ -112,7 +118,10 @@ export function InvoicesTable({
         dispatch(resetStatus());
       }
 
-      // if(!isDBConnecting) initDB();
+      // if(searchParams.itemtype) {
+      //   console.log("SEARCH PARAMS >> ", searchParams.itemtype);
+      //   setFormData({ ...formData, ["itemType"]: searchParams.itemtype });
+      // }
 
       dispatch(getAllInvoices(formData));
     }
@@ -218,13 +227,13 @@ export function InvoicesTable({
           <div className="mt-2">
               <div className="flex flex-row items-center">
                   <label className="basis-1/4">Item :</label>
-                  <Select name="itemType" options={optionsItemType} className="basis-2/4" placeholder="-- Select One --" isClearable={true} onChange={setNewItemType} />
+                  <Select name="itemType" options={optionsItemType} className="basis-3/4" placeholder="-- Select One --" isClearable={true} onChange={setNewItemType} defaultValue={defaultItemType} />
               </div>
           </div>
           <div className="mt-2">
               <div className="flex flex-row items-center">
                   <label className="basis-1/4">Type :</label>
-                  <Select name="type" options={optionsType} className="basis-2/4" placeholder="-- Select One --" isClearable={true} onChange={setNewType} />
+                  <Select name="type" options={optionsType} className="basis-3/4" placeholder="-- Select One --" isClearable={true} onChange={setNewType} />
               </div>
           </div>
           <div className="mt-2">
