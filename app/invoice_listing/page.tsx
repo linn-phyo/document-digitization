@@ -1,17 +1,13 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation'
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { InvoicesTable } from './invoices-table';
 
-export type SearchParams = {
-  itemtype: string;
-};
+export default function DocumentListingPage() { 
 
-export type PageProps = {
-  searchParams: SearchParams;
-};
- 
-export default function DocumentListingPage({ searchParams }: PageProps) { 
+  const searchParams = useSearchParams();
 
   let pageNo = 1;
   let newOffset = 0;

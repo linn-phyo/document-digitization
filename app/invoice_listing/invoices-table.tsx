@@ -83,7 +83,7 @@ export function InvoicesTable({
 
   const [formData, setFormData] = useState({
     type: '',
-    itemType: (searchParams.itemtype) ? searchParams.itemtype : "",
+    itemType: (searchParams.get("itemtype")) ? searchParams.get("itemtype") : "",
     fromDate: null,
     toDate: null,
   });
@@ -102,10 +102,10 @@ export function InvoicesTable({
   ]
 
   let defaultItemType = null;
-  if(searchParams.itemtype) {
-    defaultItemType = optionsItemType.filter(data => (data.value == searchParams.itemtype));
+  if(searchParams.get("itemtype")) {
+    defaultItemType = optionsItemType.filter(data => (data.value == searchParams.get("itemtype")));
   }
-
+  
   useEffect(() => {
     
     if (!initialized.current) {
@@ -135,9 +135,6 @@ export function InvoicesTable({
       dispatch(getAllInvoices(formData));
       showToast("success", "Data has been deleted!");
     }
-
-    //if(itemList == null)
-      
     
   }, [status]);
 
